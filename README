@@ -1,0 +1,116 @@
+By 311CAb Buzea Alexandru-Mihai-Iulian
+
+English:
+
+Task 1: NINEL
+
+	[Context]: Our character NINEL has a forest of trees of different heights
+(which are integers) and he wants to determine the sum of the heights of the
+special trees, the mean height of a special tree, the maximum height of a
+special tree with an odd index and the minimum height of a special tree with
+an even index. Note that a special tree is a tree which is taller than its
+neighbours. (Ex. 7 8 6 9 2 => 8 and 9 are special trees, while 7, 6 and 2 are
+not).
+
+	Solution (ninel.c): we retained the heights of three consecutive trees and
+determined if the middle one is special, then based on its index (we have a
+count variable) we process the special tree using the maximum/minimum algorithm
+and we add it to the sum of the already-processed trees's heights. At the finish
+of the algorithm, we determine the mean of the tree's heights (with 1e-7
+precision).
+
+Task2: VECTSECV
+
+	[Context]: For a number n (input), we can build a sequence of numbers in
+this way: the first number from the sequence is n, then the following numbers
+are built based on the following rule:
+
+	The nth number = [Number got from the n-1th number with descending sorted 
+digits] - [Number got from the n-1th number with ascending sorted digits]
+
+	It can be proven that for any input n, our described sequence has a period.
+We need to determine the length of the repeating sequence (its period) and the
+numbers included in that period.
+
+	Solution (vectsecv.c): we have an array, where we store the numbers given by
+the sequence. With every newly generated number, we check if that number is
+already in our array. The program stops when we find a second occurence of the
+last generated number in our sequence. In this case, we check one more time
+for the first occurence's index, and then print the length of the period and the
+numbers included in that period.
+
+Task 3: CODEINVIM
+
+	[Context]: Another character (Mihai) really wishes to get a scholarship,
+and he decides to try to raise his marks. But he wants to determine if the
+raised marks are enough to get a scholarship (exceed a minimum score).
+
+	Solution (codeinvim.c): We used an array where we initially stored the
+marks Mihai has, and then replaced each mark with the cost (number of points
+Mihai lost by the fact he has not a full mark at that subject), given by the
+formula: cost = (10 - mark) * credit_points. Then, we had a maximum function
+that returned the maximum cost from our array, and modified that cost to 0
+(a sloppy approach, because we could have sorted the array in descending
+order in O(n * log(n)); it is fine though since this is one of my first
+programming projects). If we consumed all costs, Mihai won't get a scholarship,
+and we shall print "-1".
+
+Task 4: NOMOGRAM
+	[Context]: Our favourite character Gigel wants to write a program that checks
+if a nonogram (japanese puzzle) is correctly solved.
+
+	Solution (nomogram.c): We used an array in order to store the restrictions
+(the value of each block's length). We have checked the nomogram for three cases:
+	Case I: In our array, there are fewer blocks corresponding to the line i; in
+this case, our nomogram is obviously wrong
+	Case II: In our array, there blocks of different lengths of those in nonogram
+(again, the nonogram is wrong)
+	Case III: In our array, there are more blocks than in the nonogram (again,
+a case when the nonogram is wrong).
+	All these cases were treated in check_nmg() function. The main() function allows
+to check multiple nonograms each time.
+
+Romana:
+
+Task 1: NINEL
+	La problema NINEL am retinut inaltimile a trei copaci consecutivi
+(x, y si z), si am testat daca copacul din mijloc (y) este special. 
+Daca este special, se analizeaza toate subcazurile posibile, pentru a 
+determina minimul inaltimilor copacilor pari, maximul inaltimilor 
+copacilor impari etc. Pentru suma inaltimilor am ales tipul long, deoarece
+la numere mari de copaci depaseste tipul int. La final, actualizam valorile
+inaltimilor (trecem la urmatorul triplet consecutiv)
+
+Task 2: VECTSECV
+	La problema VECTSECV am folosit mai multe functii pentru a determina 
+numarul format cu cifrele in ordine descrescatoare/crescatoare folosind un
+vector de frecventa (care imi contoriza numarul de cifre din fiecare tip)
+si am memorat secventa de numere astfel obtinuta. In momentul in care 
+am observat repetitia unui numar, am afisat numerele din secventa repetitiva
+precum si numarul de astfel de numere.
+
+Task 3 : CODEINVIM
+	La problema CODEINVIM am folosit un vector in care am retinut intial
+notele obtinute de elev, iar apoi am actualizat elementele cu valorile 
+tuturor punctajelor (la fiecare materie) pe care elevul ar fi putut sa le
+obtina, daca ar fi obtinut 10 la materia respectiva (= castigul adus de o
+eventuala nota de 10 la marire). Apoi am identificat materia care aduce
+cel mai mare castig si am inclus punctajul acesteia in punctajul final.
+Daca am inclus toate punctajele si tot nu s-a realizat punctajul minim,
+ne oprim si afisam valoarea -1 pentru num. 
+
+Task 4 : NOMOGRAM
+	La problema NOMOGRAM am folosit un vector pentru retinerea 
+restrictiilor pentru linii si coloane (numarul de blocuri colorate si
+lungimea fiecarui bloc, precum si -1 ca delimitator). Esenta problemei 
+este functia check_nmg, care returneaza 0 (eroare) in toate cele 3 cazuri:
+	Cazul 1 : In vectorul de restrictii sunt mai putine blocuri decat in 
+nonograma, caz in care nonograma clar nu e corecta.
+	Cazul 2 : Lungimile blocurilor nu corespund cu cele din nonograma.
+	Cazul 3 : In vectorul de restrictii sunt mai multe blocuri decat in
+nonograma, caz in care, din nou, nonograma nu e corecta.
+	In functia main am pastrat o structura simpla ce permite verificarea 
+mai multor nonograme, cu respectarea conditiilor din enunt.
+
+
+	
